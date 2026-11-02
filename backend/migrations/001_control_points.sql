@@ -1,0 +1,8 @@
+-- Apply once to an existing PostgreSQL database before deploying Control Points.
+CREATE TABLE IF NOT EXISTS ingestion_batches (id SERIAL PRIMARY KEY, source_name VARCHAR(255) NOT NULL, original_filename VARCHAR(255) NOT NULL, accepted_rows INTEGER NOT NULL DEFAULT 0, rejected_rows INTEGER NOT NULL DEFAULT 0, column_mapping JSON, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
+ALTER TABLE control_point_results ALTER COLUMN transaction_id DROP NOT NULL;
+ALTER TABLE control_point_results ADD COLUMN IF NOT EXISTS claim_id VARCHAR(50) REFERENCES expense_claims(claim_id);
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS description VARCHAR(1000), ADD COLUMN IF NOT EXISTS entry_method VARCHAR(40) DEFAULT 'system', ADD COLUMN IF NOT EXISTS source_system VARCHAR(100), ADD COLUMN IF NOT EXISTS invoice_number VARCHAR(120), ADD COLUMN IF NOT EXISTS debit_amount NUMERIC(15,2), ADD COLUMN IF NOT EXISTS credit_amount NUMERIC(15,2), ADD COLUMN IF NOT EXISTS ingestion_batch_id INTEGER REFERENCES ingestion_batches(id);
+CREATE TABLE IF NOT EXISTS control_point_results (id SERIAL PRIMARY KEY, transaction_id INTEGER NOT NULL REFERENCES transactions(id), control_point_id VARCHAR(80) NOT NULL, control_point_name VARCHAR(160) NOT NULL, category VARCHAR(40) NOT NULL, status VARCHAR(20) NOT NULL, confidence FLOAT NOT NULL, explanation_text TEXT NOT NULL, evidence JSON, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX IF NOT EXISTS ix_control_point_results_transaction ON control_point_results(transaction_id);
+CREATE TABLE IF NOT EXISTS control_point_assertion_map (id SERIAL PRIMARY KEY, control_point_id VARCHAR(80) NOT NULL, assertion VARCHAR(60) NOT NULL, weight FLOAT NOT NULL DEFAULT 1.0);

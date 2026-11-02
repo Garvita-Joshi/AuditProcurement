@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+venv/
+env/
+.venv/
+
+# ML artifacts
+trained_models/
+*.pt
+*.pkl
+*.joblib
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Vite build
+frontend/dist/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Data (large files)
+data/*.csv
+data/*.json
+uploads/
+
+# Logs
+*.log
+
+# Gemini/Antigravity
+.gemini/
+.agents/
+
+# Local configuration, generated records and datasets
+.env.*
+!.env.example
+!.env.sample
+data/
+auditData/
+output/
+*.csv
+*.numbers
+*.xlsx
+*.npz
+*.db
+*.sqlite*
+*.mp4
+.pytest_cache/

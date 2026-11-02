@@ -1,0 +1,26 @@
+/* Independent movable buying assistant. */
+.p-dialog.p-dialog-wide:has(.intake-footer){height:min(92vh,980px);max-height:calc(100vh - 32px);display:flex;flex-direction:column}
+.p-dialog.p-dialog-wide:has(.intake-footer)>.intake-footer{flex:none}
+.p-buying-assistant-root{position:fixed;inset:0;z-index:120;pointer-events:none;font-family:inherit;color:#40354c}
+.p-buying-assistant-root button{font:inherit}
+.p-buying-assistant-launcher{pointer-events:auto;position:fixed;right:26px;bottom:24px;display:grid;justify-items:center;gap:3px;padding:6px 12px 9px;border:1px solid #ded4f2;border-radius:24px;background:linear-gradient(145deg,#fff,#f3efff);box-shadow:0 8px 28px #39216c2b;cursor:pointer;animation:bot-launch-in .5s cubic-bezier(.2,.8,.2,1) both;transition:transform .2s,box-shadow .2s}
+.p-buying-assistant-launcher:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 12px 32px #39216c38}
+.p-buying-assistant-launcher-bot{display:block;width:58px;height:58px;animation:bot-float 2.8s ease-in-out infinite}
+.buying-bot{display:block;width:100%;height:100%;image-rendering:pixelated;filter:drop-shadow(0 4px 2px #33305c26)}
+.p-buying-assistant-launcher-label{padding:4px 9px;border-radius:999px;background:#5144b4;color:#fff;font-size:10px;font-weight:600;letter-spacing:.02em}
+.p-intake-chat-window{pointer-events:auto;position:fixed;right:26px;bottom:24px;width:min(370px,calc(100vw - 24px));height:min(510px,calc(100vh - 32px));display:flex;flex-direction:column;overflow:hidden;border:1px solid #ded6f1;border-radius:18px;background:#fff;box-shadow:0 18px 60px #20133d3b;transform-origin:bottom right;animation:bot-panel-in .24s cubic-bezier(.2,.8,.2,1) both}
+.p-intake-chat-window.is-dragging{transition:none;cursor:grabbing;user-select:none}
+.p-intake-chat-header{display:flex;align-items:center;gap:11px;flex:none;padding:12px 13px;background:linear-gradient(120deg,#f7f3ff,#eef7ff);border-bottom:1px solid #ebe6f3;cursor:grab;touch-action:none;user-select:none}
+.p-intake-chat-header:active{cursor:grabbing}
+.p-intake-bot-small{width:42px;height:42px;flex:none;animation:bot-float 2.8s ease-in-out infinite}
+.p-intake-chat-title{display:grid;gap:3px;flex:1;min-width:0}.p-intake-chat-title strong{font-size:13px;color:#4b3c65}.p-intake-chat-title small{font-size:10px;color:#8a8098}
+.p-intake-chat-header>button{width:30px;height:30px;border:1px solid #ddd5ec;border-radius:50%;background:#fff;color:#63547c;font-size:20px;line-height:1;cursor:pointer}
+.p-intake-chat-body{flex:1;min-height:0;overflow:auto;padding:12px;background:radial-gradient(ellipse at 50% 0,#f8f5ff 0,white 70%)}
+.p-intake-chat-welcome{min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px}.p-intake-chat-welcome>.buying-bot{width:78px;height:78px;animation:bot-float 2.8s ease-in-out infinite}.p-intake-chat-welcome strong{font-size:13px;color:#4b3c65}.p-intake-chat-welcome span{max-width:270px;color:#80778e;font-size:11px;line-height:1.55}
+.p-intake-chat-window .p-intake-chat-history{max-height:none;overflow:visible;margin:0;padding:0}.p-intake-chat-window .sourcing-message{padding:10px 12px;margin:7px 0;border-radius:12px;background:#f4f1fa;font-size:11px}.p-intake-chat-window .sourcing-message.user{margin-left:28px;background:#ebe5ff}.p-intake-chat-window .sourcing-message p{margin:5px 0 0;line-height:1.5}.p-intake-chat-window .p-notice{font-size:11px;padding:9px;margin:8px 0}
+.p-intake-chat-window .p-intake-chat-composer{flex:none;margin:10px;padding:5px 6px 5px 13px;border-radius:22px;box-shadow:0 3px 12px #35225810}.p-intake-chat-window .p-intake-chat-composer .p-button{width:34px;height:34px;min-width:34px;display:grid;place-items:center;padding:0;border-radius:50%}
+@keyframes bot-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes bot-launch-in{from{opacity:0;transform:translateY(14px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes bot-panel-in{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:600px){.p-dialog.p-dialog-wide:has(.intake-footer){height:calc(100dvh - 16px);max-height:calc(100dvh - 16px)}.p-buying-assistant-launcher{right:14px;bottom:14px}.p-intake-chat-window{right:12px;bottom:12px;height:min(500px,calc(100dvh - 24px))}}
+@media(prefers-reduced-motion:reduce){.p-buying-assistant-launcher,.p-intake-chat-window,.p-buying-assistant-launcher-bot,.p-intake-bot-small,.p-intake-chat-welcome>.buying-bot{animation:none;transition:none}}
